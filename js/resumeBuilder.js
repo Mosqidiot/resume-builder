@@ -22,8 +22,8 @@ This is empty on purpose! Your code to build the resume will go here.
     "name" : "Fangzhou Hu",
     "role" : "Software Engineering/ Web Developer",
     "location": "La Jolla, CA",
-    "address" : "1 MIRAMAR ST # 929798, La Jolla, CA 92092­0003",
-    "mobile" : "608­886­6617",
+    "address" : "1 MIRAMAR ST # 929798, La Jolla, CA 92092 0003",
+    "mobile" : "6088866617",
     "email" : "fhu6@wisc.edu",
     "github" : "Mosqidiot",
     "picture" : "images/fry.jpg",
@@ -38,7 +38,7 @@ This is empty on purpose! Your code to build the resume will go here.
     {
     "employer" : "Industrial Refrigeration Consortium (IRC)",
     "title" : "Web Developer",
-    "workdates": "June, 2015 ­- May, 2016",
+    "workdates": "June, 2015 to May, 2016",
     "location" : "Madison, WI",
     "discription" : "Developed and maintained IRC's website, Apache Server and SQL database. "+
     "The IRC website provides refrigeration related educational resource to multinational "+
@@ -115,13 +115,15 @@ This is empty on purpose! Your code to build the resume will go here.
 
   //Skill glance
   $("#header").append(formatedSkillHeader);
-  for(skill in bio.skill){
+  for(var skill in bio.skill){
+    if(bio.skill.hasOwnProperty(skill))
     $("#skills").append(HTMLskills.replace("%data%", bio.skill[skill]));
   }
 
   //work
   function workdisplay() {
-    for(workid in work){
+    for(var workid in work){
+      if(work.hasOwnProperty(workid)){
       $("#workExperience").append(HTMLworkStart);
       var foremployer = HTMLworkEmployer.replace("%data%", work[workid].employer);
       var fortitle = HTMLworkTitle.replace("%data%", work[workid].title);
@@ -134,10 +136,13 @@ This is empty on purpose! Your code to build the resume will go here.
       $(".work-entry:last-of-type").append(fordates);
       $(".work-entry:last-of-type").append(forloc);
       $(".work-entry:last-of-type").append(fordisc);
+      }
     }
-  };
+  }
+
   function schoolDisplay() {
-    for(schoolid in education.schools){
+    for(var schoolid in education.schools){
+      if(education.schools.hasOwnProperty(schoolid)){
       $("#education").append(HTMLschoolStart);
       var forschoolname = HTMLschoolName.replace("%data%",education.schools[schoolid].name);
       var forschooldegree = HTMLschoolDegree.replace("%data%",education.schools[schoolid].degree);
@@ -150,8 +155,10 @@ This is empty on purpose! Your code to build the resume will go here.
       $(".education-entry:last-of-type").append(forschooldates);
       $(".education-entry:last-of-type").append(forschoollocation);
       $(".education-entry:last-of-type").append(forschoolmajor);
+      }
     }
-  };
+  }
+
   function projectDisplay(){
     for(var pid = 0; pid < project.length; pid++){
       if (project.hasOwnProperty(pid)){
@@ -168,11 +175,8 @@ This is empty on purpose! Your code to build the resume will go here.
         $(".project-entry:last-of-type").append(forprojectImage);
       }
     }
-  };
+  }
     workdisplay();
     projectDisplay();
     schoolDisplay();
     $("#mapDiv").append(googleMap);
-
-
-
