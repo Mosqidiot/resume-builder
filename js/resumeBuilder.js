@@ -106,69 +106,70 @@ $("#topContacts").append(formattedGithub);
 $("#topContacts").append(formattedLocation);
 $("#header").append(formattedPic);
 $("#header").append(formattedWelcome);
+//bottom
+$("#footerContacts").append(formattedMobil);
+$("#footerContacts").append(formattedEmail);
+$("#footerContacts").append(formattedGithub);
+$("#footerContacts").append(formattedLocation);
 
 //Skill glance
 $("#header").append(formatedSkillHeader);
-for (var skill in bio.skill) {
-    if (bio.skill.hasOwnProperty(skill))
-        $("#skills").append(HTMLskills.replace("%data%", bio.skill[skill]));
-}
+bio.skill.forEach(function(entry) {
+    $("#skills").append(HTMLskills.replace("%data%", entry));
+});
 
 //work
 function workdisplay() {
-    for (var workid in work) {
-        if (work.hasOwnProperty(workid)) {
-            $("#workExperience").append(HTMLworkStart);
-            var foremployer = HTMLworkEmployer.replace("%data%", work[workid].employer);
-            var fortitle = HTMLworkTitle.replace("%data%", work[workid].title);
-            var fordates = HTMLworkDates.replace("%data%", work[workid].workdates);
-            var forloc = HTMLworkLocation.replace("%data%", work[workid].location);
-            var fordisc = HTMLworkDescription.replace("%data%", work[workid].discription);
+    work.forEach(function(entry) {
 
-            $(".work-entry:last-of-type").append(foremployer);
-            $(".work-entry:last-of-type").append(fortitle);
-            $(".work-entry:last-of-type").append(fordates);
-            $(".work-entry:last-of-type").append(forloc);
-            $(".work-entry:last-of-type").append(fordisc);
-        }
-    }
+        $("#workExperience").append(HTMLworkStart);
+        var foremployer = HTMLworkEmployer.replace("%data%", entry.employer);
+        var fortitle = HTMLworkTitle.replace("%data%", entry.title);
+        var fordates = HTMLworkDates.replace("%data%", entry.workdates);
+        var forloc = HTMLworkLocation.replace("%data%", entry.location);
+        var fordisc = HTMLworkDescription.replace("%data%", entry.discription);
+
+        $(".work-entry:last-of-type").append(foremployer);
+        $(".work-entry:last-of-type").append(fortitle);
+        $(".work-entry:last-of-type").append(fordates);
+        $(".work-entry:last-of-type").append(forloc);
+        $(".work-entry:last-of-type").append(fordisc);
+
+    });
 }
 
 function schoolDisplay() {
-    for (var schoolid in education.schools) {
-        if (education.schools.hasOwnProperty(schoolid)) {
-            $("#education").append(HTMLschoolStart);
-            var forschoolname = HTMLschoolName.replace("%data%", education.schools[schoolid].name);
-            var forschooldegree = HTMLschoolDegree.replace("%data%", education.schools[schoolid].degree);
-            var forschooldates = HTMLschoolDates.replace("%data%", education.schools[schoolid].dates);
-            var forschoollocation = HTMLschoolLocation.replace("%data%", education.schools[schoolid].location);
-            var forschoolmajor = HTMLschoolMajor.replace("%data%", education.schools[schoolid].majors);
+    education.schools.forEach(function(entry) {
+        $("#education").append(HTMLschoolStart);
+        var forschoolname = HTMLschoolName.replace("%data%", entry.name);
+        var forschooldegree = HTMLschoolDegree.replace("%data%", entry.degree);
+        var forschooldates = HTMLschoolDates.replace("%data%", entry.dates);
+        var forschoollocation = HTMLschoolLocation.replace("%data%", entry.location);
+        var forschoolmajor = HTMLschoolMajor.replace("%data%", entry.majors);
 
-            $(".education-entry:last-of-type").append(forschoolname);
-            $(".education-entry:last-of-type").append(forschooldegree);
-            $(".education-entry:last-of-type").append(forschooldates);
-            $(".education-entry:last-of-type").append(forschoollocation);
-            $(".education-entry:last-of-type").append(forschoolmajor);
-        }
-    }
+        $(".education-entry:last-of-type").append(forschoolname);
+        $(".education-entry:last-of-type").append(forschooldegree);
+        $(".education-entry:last-of-type").append(forschooldates);
+        $(".education-entry:last-of-type").append(forschoollocation);
+        $(".education-entry:last-of-type").append(forschoolmajor);
+    });
+
 }
 
 function projectDisplay() {
-    for (var pid = 0; pid < project.length; pid++) {
-        if (project.hasOwnProperty(pid)) {
-            $("#projects").append(HTMLprojectStart);
-            var forprojecttitle = HTMLprojectTitle.replace("%data%", project[pid].title);
-            var forprojectDates = HTMLprojectDates.replace("%data%", project[pid].date);
-            var forprojectDiscript = HTMLprojectDescription.replace("%data%", project[pid].discription);
-            var forprojectImage = HTMLprojectImage.replace("%data%", project[pid].image);
+    project.forEach(function(entry) {
+        $("#projects").append(HTMLprojectStart);
+        var forprojecttitle = HTMLprojectTitle.replace("%data%", entry.title);
+        var forprojectDates = HTMLprojectDates.replace("%data%", entry.date);
+        var forprojectDiscript = HTMLprojectDescription.replace("%data%", entry.discription);
+        var forprojectImage = HTMLprojectImage.replace("%data%", entry.image);
 
 
-            $(".project-entry:last-of-type").append(forprojecttitle);
-            $(".project-entry:last-of-type").append(forprojectDates);
-            $(".project-entry:last-of-type").append(forprojectDiscript);
-            $(".project-entry:last-of-type").append(forprojectImage);
-        }
-    }
+        $(".project-entry:last-of-type").append(forprojecttitle);
+        $(".project-entry:last-of-type").append(forprojectDates);
+        $(".project-entry:last-of-type").append(forprojectDiscript);
+        $(".project-entry:last-of-type").append(forprojectImage);
+    });
 }
 workdisplay();
 projectDisplay();
